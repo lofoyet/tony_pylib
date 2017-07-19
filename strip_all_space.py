@@ -13,12 +13,13 @@ def strip_spaces(a_string, other_characters = []):
     assert (type(the_unicode) == unicode)
     spaces = [u"\u0020", u"\u1680", u"\u180E", u"\u00A0", u"\u2000", u"\u2001", u"\u2002", u"\u2003",
               u"\u2004", u"\u2005", u"\u2006", u"\u2007", u"\u2008", u"\u2009", u"\u200A", u"\u200B",
-              u"\u202F", u"\u205F", u"\u2060", u"\u3000", u"\uFEFF", u"\n",     u"\t"]
+              u"\u202F", u"\u205F", u"\u2060", u"\u3000", u"\uFEFF", u"\n",     u"\t",     u"\f",
+              u"\r",     u"\v"]
 
     spaces += other_characters
 
     for space in spaces:
-        the_unicode = the_unicode.strip(space)
+        the_unicode = the_unicode.replace(space, "")
 
     return the_unicode
 
@@ -35,7 +36,7 @@ def strip_character(a_string, characters, if_include_spaces = False):
         the_unicode = unicode(a_string)
 
         for character in characters:
-            the_unicode = the_unicode.strip(character)
+            the_unicode = the_unicode.replace(character, "")
 
         return the_unicode
 
