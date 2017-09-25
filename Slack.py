@@ -1,6 +1,7 @@
 #! /usr/bin/python
 # -*- encoding: utf-8 -*-
 import os
+import json
 from slackclient import SlackClient
 
 
@@ -9,10 +10,13 @@ class SlackMessenger(object):
     Used to send slack message
     """
 
-    def __init__(self):
-        self.token = "xoxp-2812264983-186712927904-242821448624-2af9518927db3d44bcede8a1ad54f616"
+    def __init__(self, token_path):
+        auth = json.load(open(token_path, "rb"))
+        self.token = auth["Token"]
         self.msger = SlackClient(self.token)
-        self.me = "@tony.liu"
+        self.me = auth["me"]
+        self.business_group = auth["business_group_id"]
+        self.reporting_run = auth["report_run"]
 
     def send_message(self, text, to, as_me):
         if to == "me":
@@ -26,7 +30,7 @@ class SlackMessenger(object):
         )
 
     def send_message_to_business_group(self, text):
-        self.send_message(text, "G74EGDWFK")
+        self.send_message(text, self.business_group)
 
     def send_message_to_reporting_run(self, text):
-        self.send_message(text, "reporting_run")
+        self.send_message(text, self.reporting_run)
