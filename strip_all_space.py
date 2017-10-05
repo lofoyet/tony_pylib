@@ -8,7 +8,7 @@
 # from __future__ import print_function
 
 
-def strip_spaces(a_string, add_characters = [], exclude_characters = []):
+def strip_spaces(a_string, add_characters=[], exclude_characters=[]):
     the_unicode = unicode(a_string)
     assert (type(the_unicode) == unicode)
     spaces = [u"\u0020", u"\u1680", u"\u180E", u"\u00A0", u"\u2000", u"\u2001", u"\u2002", u"\u2003",
@@ -25,5 +25,3 @@ def strip_spaces(a_string, add_characters = [], exclude_characters = []):
         the_unicode = the_unicode.replace(space, "")
 
     return the_unicode
-
-
