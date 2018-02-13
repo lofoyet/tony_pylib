@@ -60,12 +60,3 @@ class LoadDrop:
                 print("elapsed time: {}".format(crnt_time - stt_time))
 
         return self.data_dropped
-
-
-
-
-
-
-
-
-

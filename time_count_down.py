@@ -4,6 +4,7 @@ from __future__ import print_function
 import datetime
 import sys
 
+
 def time_count_down(start_time, total_len, counter, interval):
     assert (type(total_len) == int)
     assert (type(counter) == int)
@@ -24,6 +25,5 @@ def time_count_down(start_time, total_len, counter, interval):
         expected_time = datetime.time(int(expected_time_h), int(
             expected_time_m), int(expected_time_s)).strftime("%H:%M:%S")
         sys.stdout.write("Now processing %.2f%%. Expected remaining time: %s.\r" % (
-            float(counter / total_len) * 100, expected_time))
-        print(float(counter / total_len) * 100)
+            (float(counter) / total_len * 100), expected_time))
         sys.stdout.flush()

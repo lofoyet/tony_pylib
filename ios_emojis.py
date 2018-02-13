@@ -38,7 +38,8 @@ def main(ios_version):
 
     # In[24]:
 
-    REGEX_HREF = r"(?<=\/apple\/ios\-10\.3\/)[^\/]+"
+    REGEX_HREF = r"(?<=\/apple\/ios\-{0:s}\.{1:s}\/)[^\/]+".format(
+        *ios_version.split("."))
 
     # In[26]:
 
@@ -122,7 +123,7 @@ def main(ios_version):
     # In[205]:
 
     all_len_list = []
-    for E in emoji_Upc:
+    for E in emoji_Upcodes:
         for i in E:
             all_len_list.append(len(i[2:]))
 
@@ -133,7 +134,7 @@ def main(ios_version):
     # In[225]:
 
     true_emoji_list = []
-    for E in emoji_Upc:
+    for E in emoji_Upcodes:
         this_true_emoji = u""
         for i in E:
             if len(i[2:]) == 2:
@@ -159,7 +160,8 @@ def main(ios_version):
 
     # In[235]:
 
-    pickle.dump(emoji_dict, open("emoji_dict_ios11_0.pkl", "wb"))
+    pickle.dump(emoji_dict, open(
+        "emoji_dict_ios{:s}.pkl".format(ios_version), "wb"))
 
     # In[196]:
 
