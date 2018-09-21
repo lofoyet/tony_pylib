@@ -33,4 +33,4 @@ class SlackMessenger(object):
         self.send_message(text, self.business_group)
 
     def send_message_to_reporting_run(self, text):
-        self.send_message(text, self.reporting_run)
+        self.send_message(text, self.reporting_run, as_me=True)

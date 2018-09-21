@@ -87,8 +87,8 @@ class DropNearDuplicate(object):
             min_hashes.append(mh)
         for index, if_keep in indicator.iteritems():
             if if_keep and len(dataframe[by_column].iloc[index]) > min_len:
-                for index_str in lsh.query(min_hashes[index]):
-                    if int(index_str) == index:
-                        continue
-                    indicator.iat[int(index_str)] = False
+                similar_row_indices = map(int, lsh.query(min_hashes[index]))
+                first_silimar_row = min(similar_row_indices)
+                if first_silimar_row < index:
+                    indicator.iat[int(index)] = False
         return dataframe[indicator]
